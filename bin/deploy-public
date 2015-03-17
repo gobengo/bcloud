@@ -1,0 +1,8 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+PUBLIC_DIR="$DIR/../public"
+GS_URL=gs://bengo/
+
+echo "Deploying $PUBLIC_DIR to Google Cloud Storage"
+gsutil rsync $PUBLIC_DIR $GS_URL
+
