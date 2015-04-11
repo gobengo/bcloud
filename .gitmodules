@@ -1,0 +1,3 @@
+[submodule "apps/bengo-web"]
+	path = apps/bengo-web
+	url = https://github.com/gobengo/bengo.is
