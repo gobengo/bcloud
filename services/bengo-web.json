@@ -1,0 +1,15 @@
+{
+  "id": "bengo-web",
+  "kind": "Service",
+  "createExternalLoadBalancer": false,
+  "apiVersion": "v1beta1",
+  "port": 80,
+  "containerPort": 80,
+  "publicIPs": ["146.148.72.150"],
+  "selector": {
+    "name": "bengo-web"
+  },
+  "labels": {
+    "name": "bengo-web"
+  }
+}

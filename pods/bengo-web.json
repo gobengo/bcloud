@@ -1,0 +1,32 @@
+{
+  "id": "bengo-web",
+  "kind": "Pod",
+  "apiVersion": "v1beta1",
+  "labels": {
+    "name": "bengo-web",
+    "role": "www"
+  },
+  "desiredState": {
+    "manifest": {
+      "version": "v1beta1",
+      "containers": [{
+        "name": "bengo-web",
+        "image": "gcr.io/bengo-is/bengo-web",
+        "ports": [{
+          "name": "bengo-web",
+          "containerPort": 80,
+          "hostPort": 80
+        }],
+        "livenessProbe": {
+          "enabled": true,
+          "type": "http",
+          "initialDelaySeconds": 30,
+          "httpGet": {
+            "path": "/",
+            "port": 80
+          }
+        }
+      }]
+    }
+  }
+}

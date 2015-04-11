@@ -1,0 +1,41 @@
+{
+  "id": "bengo-web-controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 3,
+    "replicaSelector": {"name": "bengo-web"},
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "containers": [{
+            "name": "bengo-web",
+            "image": "gcr.io/bengo-is/bengo-web",
+            "imagePullPolicy": "PullAlways",
+            "ports": [{
+              "name": "bengo-web",
+              "containerPort": 80,
+              "hostPort": 80
+            }],
+            "livenessProbe": {
+              "enabled": true,
+              "type": "http",
+              "initialDelaySeconds": 30,
+              "httpGet": {
+                "path": "/",
+                "port": 80
+              }
+            }
+          }]
+        }
+      },
+      "labels": {
+        "name": "bengo-web",
+      }
+    }
+  },
+  "labels": {
+    "name": "bengo-web"
+  }
+}
