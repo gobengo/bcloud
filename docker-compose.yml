@@ -1,0 +1,4 @@
+web:
+  build: apps/bengo-web/
+  ports:
+   - "80:80"
