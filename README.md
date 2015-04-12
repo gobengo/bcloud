@@ -1,6 +1,6 @@
 # bcloud
 
-Config files for the bcloud.
+Config files for the bcloud (**b**engo's **cloud**)
 Some parts require [gcloud](https://cloud.google.com).
 
 BIG NOTE: This is intentionally experimental so I have some excuse to follow Docker, Kubernetes, etc. If you see me doing something wrong, or wonder about how this whole thing works, file an issue so I can learn or teach or both.
