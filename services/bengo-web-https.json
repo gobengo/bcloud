@@ -1,0 +1,16 @@
+{
+  "id": "bengo-web-https",
+  "kind": "Service",
+  "createExternalLoadBalancer": false,
+  "apiVersion": "v1beta1",
+  "port": 443,
+  "containerPort": 443,
+  "publicIPs": ["146.148.72.150"],
+  "selector": {
+    "name": "bengo-web"
+  },
+  "labels": {
+    "name": "bengo-web",
+    "port": "443"
+  }
+}
