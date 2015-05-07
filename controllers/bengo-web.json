@@ -1,10 +1,13 @@
 {
-  "id": "bengo-web-controller",
+  "id": "bengo-web-controller-1",
   "kind": "ReplicationController",
   "apiVersion": "v1beta1",
   "desiredState": {
     "replicas": 3,
-    "replicaSelector": {"name": "bengo-web"},
+    "replicaSelector": {
+      "name": "bengo-web",
+      "controllerVersion": "1"
+    },
     "podTemplate": {
       "desiredState": {
         "manifest": {
@@ -13,10 +16,25 @@
             "name": "bengo-web",
             "image": "gcr.io/bengo-is/bengo-web",
             "imagePullPolicy": "PullAlways",
+            "volumeMounts": [{
+              "name": "bengo-shared",
+              "mountPath": "/bengo-shared"
+            }],
+            "env": [{
+              "name": "ssl_cert",
+              "value": "/bengo-shared/ssl/bengo.is/bengo.is.cer"
+            },{
+              "name": "ssl_key",
+              "value": "/bengo-shared/ssl/bengo.is/bengo.is.key"
+            }],
             "ports": [{
               "name": "bengo-web",
               "containerPort": 80,
               "hostPort": 80
+            },{
+              "name": "bengo-web-https",
+              "containerPort": 443,
+              "hostPort": 443
             }],
             "livenessProbe": {
               "enabled": true,
@@ -27,15 +45,27 @@
                 "port": 80
               }
             }
-          }]
+          }],
+          "volumes": [{
+            "name": "bengo-shared",
+            "source": {
+              "persistentDisk": {
+                "pdName": "bengo-shared",
+                "fsType": "ext4",
+                "readOnly": true
+              }
+            }
+          }],
         }
       },
       "labels": {
         "name": "bengo-web",
+        "controllerVersion": "1"
       }
     }
   },
   "labels": {
-    "name": "bengo-web"
+    "name": "bengo-web",
+    "controllerVersion": "1"
   }
 }
