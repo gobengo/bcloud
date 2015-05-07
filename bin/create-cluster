@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# name of cluster
+name=$1
+
+gcloud alpha container clusters create $name
